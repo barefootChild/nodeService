@@ -1,0 +1,15 @@
+{
+  "name": "node-service",
+  "version": "1.0.0",
+  "description": "make a service with node.js",
+  "main": "service.js",
+  "scripts": {
+    "test": "node ./service.js"
+  },
+  "keywords": [
+    "node",
+    "service"
+  ],
+  "author": "barefootchild",
+  "license": "ISC"
+}
