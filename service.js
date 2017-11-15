@@ -13,13 +13,17 @@ var mimeTypes = {
 
 http.createServer(function (request, response) {
     var lookup = path.basename(decodeURI(request.url)) || 'index.html',
-        dirname = path.dirname(decodeURI(request.url)) || '',
-        f = dirname + lookup;
+        dirname = path.dirname(decodeURI(request.url)) || '';
+    if (dirname && dirname.length > 1) {
+      var f = dirname + '/' + lookup;
+    } else {
+      var f = dirname + lookup;
+    }
     console.log(f);
   //文件是否存在
-    fs.exists(f, function (exists) {
+    fs.exists('.' + f, function (exists) {
         if (exists) {
-            fs.readFile(f, function (err, data) {
+            fs.readFile('.' + f, function (err, data) {
                 if (err) { response.writeHead(500);
                     response.end('Server Error!');
                     return false;
