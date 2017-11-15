@@ -13,7 +13,7 @@ var mimeTypes = {
 
 http.createServer(function (request, response) {
     var lookup = path.basename(decodeURI(request.url)) || 'index.html',
-        f = 'game/' + lookup;
+        f = lookup;
     //文件是否存在
     fs.exists(f, function (exists) {
         if (exists) {
