@@ -20,7 +20,7 @@ http.createServer(function (request, response) {
             fs.readFile(f, function (err, data) {
                 if (err) { response.writeHead(500);
                     response.end('Server Error!');
-                    return;
+                    return false;
                 }
                 //path.extname('about.html') --> .html
                 var headers = {'Content-type': mimeTypes[path.extname(lookup)]};
@@ -28,9 +28,17 @@ http.createServer(function (request, response) {
                 response.end(data);
             });
             return false;
+        } else {
+          fs.readFile('error.html', function (err, data) {
+            if (err) { response.writeHead(500);
+              response.end('Server Error!');
+              return false;
+            }
+            var headers = {'Content-type': 'text/html'};
+            response.writeHead(200, headers);
+            response.end(data);
+          });
+          return false;
         }
-        response.writeHead(404); //no such file found!
-        response.write("no such file found！");
-        response.end();
     });
 }).listen(8888);
