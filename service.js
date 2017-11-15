@@ -15,6 +15,7 @@ http.createServer(function (request, response) {
     var lookup = path.basename(decodeURI(request.url)) || 'index.html',
         dirname = path.dirname(decodeURI(request.url)) || '',
         f = dirname + lookup;
+    console.log(f);
   //文件是否存在
     fs.exists(f, function (exists) {
         if (exists) {
