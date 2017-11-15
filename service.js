@@ -13,8 +13,9 @@ var mimeTypes = {
 
 http.createServer(function (request, response) {
     var lookup = path.basename(decodeURI(request.url)) || 'index.html',
-        f = lookup;
-    //文件是否存在
+        dirname = path.dirname(decodeURI(request.url)) || '',
+        f = dirname + lookup;
+  //文件是否存在
     fs.exists(f, function (exists) {
         if (exists) {
             fs.readFile(f, function (err, data) {
