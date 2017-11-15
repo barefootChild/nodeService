@@ -30,7 +30,7 @@ http.createServer(function (request, response) {
             return false;
         }
         response.writeHead(404); //no such file found!
-        response.write("欢迎来到私人网站！");
+        response.write("no such file found！");
         response.end();
     });
 }).listen(8888);
